@@ -8,9 +8,11 @@ import java.io.Serializable;
 public class Bank implements Serializable {
 
     private int id;
-    private int code;
+    private String code;
     private String bankName;
     private String logoUrl;
+
+
 
 
     public static Bank getBankFromJson(JSONObject bankJson){
@@ -19,7 +21,7 @@ public class Bank implements Serializable {
 
         try {
             bank.setId(bankJson.getInt("id"));
-            bank.setCode(bankJson.getInt("code"));
+            bank.setCode(bankJson.getString("code"));
             bank.setBankName(bankJson.getString("Name"));
             bank.setLogoUrl(bankJson.getString("logo"));
 
@@ -41,11 +43,11 @@ public class Bank implements Serializable {
         this.id = id;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

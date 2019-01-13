@@ -1,12 +1,18 @@
 package kr.tjeit.apipractice;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import kr.tjeit.apipractice.utils.ContextUtil;
 import kr.tjeit.apipractice.utils.GlobalData;
 
 public class MainActivity extends BaseActivity {
@@ -16,11 +22,13 @@ public class MainActivity extends BaseActivity {
     private de.hdodenhof.circleimageview.CircleImageView userProfileImgView;
     private android.widget.TextView userEmailTxt;
     private android.widget.TextView userPhoneTxt;
+    private android.widget.Button logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
 
 
         bindView();
@@ -30,6 +38,35 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                android.support.v7.app.AlertDialog.Builder logoutAlert = new android.support.v7.app.AlertDialog.Builder(mContext);
+                logoutAlert.setTitle("로그아웃");
+                logoutAlert.setMessage("정말 로그아웃 하시겠습니까?");
+                logoutAlert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+//                        저장된 토큰을 빈칸으로 바꿔서 로그아웃 되었음을 처리.
+                        ContextUtil.setToken(mContext, "");
+
+                        Intent intent = new Intent(mContext, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+                logoutAlert.setNegativeButton("취소", null);
+                logoutAlert.show();
+
+            }
+        });
+
 
     }
 
@@ -53,6 +90,7 @@ public class MainActivity extends BaseActivity {
     public void bindView() {
 
 
+        this.logoutBtn = (Button) findViewById(R.id.logoutBtn);
         this.userPhoneTxt = (TextView) findViewById(R.id.userPhoneTxt);
         this.userEmailTxt = (TextView) findViewById(R.id.userEmailTxt);
         this.userProfileImgView = (CircleImageView) findViewById(R.id.userProfileImgView);

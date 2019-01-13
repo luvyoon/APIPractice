@@ -11,9 +11,7 @@
         android:roundIcon="@mipmap/app_launcher_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -21,8 +19,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".BankListActivity"></activity>
     </application>
 
 </manifest>

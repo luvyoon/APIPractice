@@ -1,6 +1,5 @@
 package kr.tjeit.apipractice;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import kr.tjeit.apipractice.datas.Bank;
 import kr.tjeit.apipractice.utils.ContextUtil;
 import kr.tjeit.apipractice.utils.GlobalData;
 
@@ -23,11 +23,13 @@ public class MainActivity extends BaseActivity {
     private android.widget.TextView userEmailTxt;
     private android.widget.TextView userPhoneTxt;
     private android.widget.Button logoutBtn;
+    private Button showBankListBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
 
 
 
@@ -38,6 +40,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void setupEvents() {
+
+        showBankListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent= new Intent(mContext, BankListActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,10 +105,10 @@ public class MainActivity extends BaseActivity {
 
 
         this.logoutBtn = (Button) findViewById(R.id.logoutBtn);
+        this.showBankListBtn = (Button) findViewById(R.id.showBankListBtn);
         this.userPhoneTxt = (TextView) findViewById(R.id.userPhoneTxt);
         this.userEmailTxt = (TextView) findViewById(R.id.userEmailTxt);
         this.userProfileImgView = (CircleImageView) findViewById(R.id.userProfileImgView);
         this.welcomeMsgTxt = (TextView) findViewById(R.id.welcomeMsgTxt);
-
     }
 }
